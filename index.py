@@ -72,7 +72,7 @@ def register_participants(data):
    sheet.append_row(values, value_input_option='RAW')
 # Prepare a response
    response = {}
-   replytext = "Hi "  + name + ", we will reserve shirt size " + shirtsize + "for you. See yoo soon."
+   replytext = "Hi "  + name + ", we will reserve shirt size " + shirtsize + " for you. See yoo soon."
    response["fulfillmentText"] = replytext
    return jsonify(response)  
 
