@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "askgovdataagent-nxlldr",
+  "private_key_id": "277d7e65fb972395483eed528938b454c998642e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKG8ZrwEdVuvEY\nheq0Zkvszv+q2/0F3ocQaKc151LwsUoXUCUslK9ZJhFbhOaHCQ2qDzO/+dPQUT/1\nsRSzpO1+YLiE0V6sIXZTv8YITmaCMKCiwWl6X2lNSm+wxK24KVRmODy0p+5kTsN7\n8MXKm0+hFndP01xAosUTyVYXt/nyANt6rBmlsTeEEcK+xD57aEouAA3yeH32YNcj\n5h3S7froZTGsjHYpYaxU6Bx43D53TrTMc1D+YDiCppM0x4Z/OB7NPEfW+/uEezwn\nNceV90VfSQQQUd9Ysa0Bzmw7nQAUB3Tms1PzlAsxi+STHeQT7DDjtho9OUatWoay\nJRDXSuC3AgMBAAECggEAT4iKltB9wfDk+5+HcyJmcnQrDFOxyGN/hyeH1aCIdQtv\neqkhV9/S+SQP5JHyHeWkKO3+kWeAwROYNdlPqjoW84qgUjQKK3anl+F5zr77e/Qi\n4ql2FqABUlceiNN9AWHSQr+StAz5tSOBrf5b95USyvOKVDF6tjzXjSfH52GQzHhy\n17g0yPhTFySDc6cNehfCIj+sKnZQI+X/DGjzv0TrMAngllkHzgGTRmD8Zqg1WXcF\nCDr+0uGw+SZVTSxxZh/9P3dj7VWFNqEg0hIP/0NW8+d7sLJ4w8xNXFn7RqXXg1Vq\nBTbRbB2y/C8BsfrlShmMkh7J2mnY0lE4g+VezsnJQQKBgQDn0eJgW/eb6UGq6i+k\n47jfAQwb3kZZMb/y654lKgKzhfWxdmVpUUC+08cePv00/xTa3259vMRO73Vznv5J\nVr1grCKhuNR2MQonalu6tUVdPuceWkO4SfR5RPXlTKlNMAw9mbqT4SSMj+Xws4yk\njn4ouLNB+ac4YxdwEkrx+944xwKBgQDfMIewV7XLp0jFf/GPChV1hM2G0EuHeS/h\neeTnrwHYxp8Pw4wE7r84WXDaQa/oHtNoGSGUzRGeyBspb9mmv67xCXMIFV15kln1\nR3leAJrQ4vQ3JRwD2yvPQcQQDKkIBuSXJJ9tRvRbiHmkiET2LPVC9HtzLqEDMNmp\nmjcLOKWIkQKBgQCbRFmCPrbmh2HDTx1gLGIrgzEQDV1C6m5tDuEadTvf8A5ysSEV\nXCWoaoIIQRoo/9yBCHuh3egCEqKxMUGR73XiJQkBFqG/E/OAGN2dfUIbRUFZdA29\nhlMnUkf8L8+JcnAQZkGwQHDRcKQLBsdhhEr9jVALFWKqAry1BJuL3i2mCwKBgQCG\nW/PDf/nMIOeZJb2oq5xhg9Iqj2h4pMbjSPs5UkydUGzfE4xOR9/Lr2RVr+eSqEQC\nTea+anlqCfL4DgKL9Kb/Kf4a5qnADw+iriVtJpYMnCQCso9b7uw/t8qtEsILOAMS\nzhQ/t9BQ7ia0muhQ/p2jcgSDQZXiktzl0hXC5pYYUQKBgFzoij1Cr7nIMBUpHDBO\n/qAmShw4P/fHHIJu8e3EqVUI0Y8dWMKiSxVjyngrh4DTA0e4zwH4QAiB1k+legB7\nKZEiILuaA9dxnMwgFehrU83T987N1nbH36tCRR2+f5KdB5L44gc05o7rC3XN8vYh\nUbNHdOkh4RujAZyGR5ZwkHAj\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-psvjoy@askgovdataagent-nxlldr.iam.gserviceaccount.com",
+  "client_id": "100815212725943778661",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-psvjoy%40askgovdataagent-nxlldr.iam.gserviceaccount.com"
+}

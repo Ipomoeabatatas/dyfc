@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: sheetsu
+Version: 1.1.0
+Summary: Sheetsu Python client
+Home-page: http://github.com/andreffs18/sheetsu-python
+Author: Andre Silva
+Author-email: andreffs18@gmail.com
+License: MIT
+Keywords: sheetsu api client sdk spreadsheet
+Platform: UNKNOWN
+Requires-Dist: requests
+
+UNKNOWN
+
+
