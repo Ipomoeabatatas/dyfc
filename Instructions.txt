@@ -1,0 +1,22 @@
+
+
+File:Procfile
+
+web: gunicorn index:app --log-file -
+index refers to the index.py file
+app refers to the object line app = Flask(__name__) in index.py
+
+
+
+To update the requirements.txt file with the modules that is
+defined within your environment:
+
+pip freeze > requirements.txt
+
+After changing any files, use the following commaads
+First, make sure to run in the python environment.
+Then login to heroku in cli
+Within the webhook directory:
+>> git add .
+>> git commit -m "your comments"
+>> git push heroku master
