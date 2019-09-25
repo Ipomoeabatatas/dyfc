@@ -34,7 +34,8 @@ def webhook():
         return log_userinfo(data)
     elif action == "register_participants" :
         return register_participants(data)
-
+    elif action == "request_visit" :
+        return request_visit(data)
     
     else:
         return handle_unknown_action(data)
@@ -77,6 +78,29 @@ def register_participants(data):
    return jsonify(response)  
 
 ########################################################################
+
+def request_visit(data):
+   name =  data['queryResult']['parameters']['person']['name']
+   time = data['queryResult']['parameters']['date']
+   date = data['queryResult']['parameters']['time']
+## Need to insert codes to write to excel file                
+
+
+   scope = ['https://spreadsheets.google.com/feeds',  'https://www.googleapis.com/auth/drive']
+   creds = ServiceAccountCredentials.from_json_keyfile_name('PythonToSheet-46f0bfa4bace.json', scope)
+   client = gspread.authorize(creds)
+# Find a workbook by name and open the first sheet
+# Make sure you use the right name here.
+   sheet = client.open("OneChatBotCourse").worksheet('showroomvisit')
+  
+# Extract and print all of the values
+   values = [name, date, time]
+   sheet.append_row(values, value_input_option='RAW')
+# Prepare a response
+   response = {}
+   replytext = "Hi "  + name + ", we look forward to your visit on " + date
+   response["fulfillmentText"] = replytext
+   return jsonify(response) 
 
 def request_callback(data):
    phone = data['queryResult']['parameters']['phone-number']
