@@ -9,8 +9,6 @@ import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-
-
 app = Flask(__name__)
 
 
@@ -36,7 +34,6 @@ def webhook():
         return register_participants(data)
     elif action == "request_visit" :
         return request_visit(data)
-    
     else:
         return handle_unknown_action(data)
 
