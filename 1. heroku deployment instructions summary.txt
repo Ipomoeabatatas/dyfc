@@ -1,0 +1,34 @@
+This file contains instructions for depoyment to heroku using CLi in Windows.
+Please follow the necessary instuctions to install git and heroku.
+$PATH may cause problems.
+
+
+Important files NOT to be messs around:
+--------------------------------------
+File:Procfile
+
+web: gunicorn index:app --log-file -
+
+
+The index refers to the index.py file
+app refers to the object line app = Flask(__name__) in index.py
+
+
+File: Requirements.txt
+To update the requirements.txt file with the modules that is defined within your environment:
+
+pip freeze > requirements.txt
+
+
+Steps in Heroku
+++++++++++++++++
+In Heroku website, first create a new app
+
+Deployment method to use Heroku CLi
+Follow the instructions given in  the subsequent webpage
+
+Upon successful deployment, go back to Heroku web. Navigate to Apps--> Setting.
+The webhook URL is found at the bottom of page.
+Your app can be found at https://dyfc-webhook.herokuapp.com
+
+When using this URL, please append the /webhook. This is defined in the index.py @app.route('/webhook', methods=['POST'])
