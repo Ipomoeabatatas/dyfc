@@ -1,0 +1,13 @@
+Use Anaconda to create a Python3.6 environment
+
+Use Anaconda to open two command terminals for the environment
+ 
+In the first command terminal, enter:
+git clone https://github.com/Ipomoeabatatas/demo-webhook-python
+
+cd to the new directory
+
+In the new directory, enter:
+pip install -r requirements.txt
+
+flask run

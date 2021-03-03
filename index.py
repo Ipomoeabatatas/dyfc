@@ -38,8 +38,6 @@ def webhook():
         return request_callback(data)
     elif action == "dummy_action" :
         return funct_dummy(data)
-    elif action == "log_userinfo" :
-        return log_userinfo(data)
     else:
         return handle_unknown_action(data)
 
