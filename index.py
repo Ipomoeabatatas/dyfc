@@ -15,7 +15,7 @@ app = Flask(__name__)
 ## The default route shows a web page . use for testing only
 @app.route('/')
 def index():
-    return ('Flask Application Is Deployed.')
+    return ('Flask Application Is Deployed successful. It is not free from bug yet')
 
 @app.route('/webhook', methods=['POST'])
 

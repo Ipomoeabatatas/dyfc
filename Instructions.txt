@@ -13,6 +13,16 @@ defined within your environment:
 
 pip freeze > requirements.txt
 
+In Heroku, create a new app
+Deployment method to use Heroku CLi
+Follow the instructions given in  the subsequent webpage
+
+Upon successful deployment, go back to Heroku web. Navigate to Apps--> Setting.
+The webhook URL is found at the bottom of page.
+Your app can be found at https://dyfc-webhook.herokuapp.com
+
+** THE INSTRUCTIONS BELOW ARE SUPERSEQ WITH THE INSTRUCTIONS FROM HEROKU PAGE**
+
 After changing any files, use the following commaads
 First, make sure to run in the python environment.
 Then login to heroku in cli
