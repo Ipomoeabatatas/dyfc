@@ -2,7 +2,6 @@
 
 from flask import Flask, request, jsonify, render_template
 import os
-#import dialogflow
 import requests
 import json
 import requests
@@ -23,7 +22,7 @@ app = Flask(__name__)
 ## The default route shows a web page . It use for testing only
 @app.route('/')
 def index():
-    return ('Flask Application Is Deployed successful. It is not free from bug yet')
+    return ('Flask Webhook 2021 Is Deployed successful. It is not free from bug yet')
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
