@@ -5,6 +5,10 @@ import os
 import requests
 import json
 import requests
+import pandas as pd
+import numpy as np
+from re import search
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -35,6 +39,8 @@ def webhook():
         return register_participants(data)
     elif action == "request_callback" :
         return request_callback(data)
+    elif action == "check_time":
+       return read_shuttlebustime(data)
     elif action == "dummy_action" :
         return funct_dummy(data)
     else:
@@ -42,10 +48,9 @@ def webhook():
 
 ########################################################################
 def test_connection(data):
+   response = {}
    replytext = "Hi there. You have made a successful connection to the webhook. The webhook has received your utterance <" + data['queryResult']['queryText'] + ">"
-   response = {
-#        "fulfillmentText": " " ,
-        "fulfillmentMessages" : [{"text" : {"text" : [ replytext ]}}]}    
+   response["fulfillmentText"] = replytext  
    return jsonify(response)  
 
 
@@ -63,23 +68,23 @@ def register_participants(data):
    shirtsize = data['queryResult']['parameters']['shirtsize']
    name =  data['queryResult']['parameters']['person']['name']
    department = data['queryResult']['parameters']['department']
-##   querytext = data['queryResult']['queryText']
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-# Find a workbook by name and open the first sheet
-# Make sure you use the right name here.
-   sheet = client.open(GOOGLE_SHEET).worksheet('eventregisteration')
-# Extract of the values
+   
+   # Find a workbook by name and open the first sheet
+   # Make sure you use the right name here.
+   # Extract of the values
+
+   sheet = client.open(GOOGLE_SHEET).worksheet('registration')
    values = [name, department, shirtsize]
    sheet.append_row(values, value_input_option='RAW')
-# Prepare a response
+
+   # Prepare a response
    response = {}
    replytext = "Hi "  + name + ", Thanks for registrating for the event. We will reserve shirt size " + shirtsize + " for you. We've got your information in the spreadsheet. Please collect at HR Department. "
    response["fulfillmentText"] = replytext
    return jsonify(response)  
-
-
 
 
 #######################################################################
@@ -103,12 +108,35 @@ def request_callback(data):
    response["fulfillmentText"] = replytext
    return jsonify(response)  
 
+########################################################################
 
+def read_shuttlebustime(data):
+   shirtsize = data['queryResult']['parameters']['shirtsize']
+   name =  data['queryResult']['parameters']['person']['name']
+   department = data['queryResult']['parameters']['department']
+
+   
+   # download a file from Google as CSV
+   # Upload into Pandas dataframe
+   # Do a dataframe search based on parameter value
+   # Pick up the required value
+
+
+
+   # Prepare a response
+   response = {}
+   replytext = "BUS"
+   response["fulfillmentText"] = replytext
+   return jsonify(response)  
+
+
+#######################################################################
 
 ########################################################################
 
 def funct_dummy(data):
-   response["fulfillmentText"] = "placeholder"
+   response = {}
+   response["fulfillmentText"] = "replace with the reply text"
    return jsonify(response) 
    
    
