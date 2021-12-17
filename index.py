@@ -17,7 +17,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 KEY_FILE = "PythonToSheet-46f0bfa4bace.json"        
 GOOGLE_SHEET_WRITE = "OneChatBotCourse"                   
-GOOGLE_SHEET_READ_URL  = "https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&gid=0&usp=sharing"                   
+GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&gid=0&usp=sharing'
 
 ##
 
@@ -116,7 +116,7 @@ def request_callback(data):
 ########################################################################
 
 def read_shuttlebustime(data):
-   pickup_pt = data['queryResult']['parameters']['pickup_pt']
+   pickup_pt = data['queryResult']['parameters']['dev_pickup']
    
    # download a file from Google as CSV
    # Upload into Pandas dataframe
