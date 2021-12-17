@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 from re import search
 import gspread
+import datetime
+
 from oauth2client.service_account import ServiceAccountCredentials
 
 ### PLEASE MODIFY THE NEXT TWO LINES TO CUSTOMIZE TO YOUR OWN GOOGLESHEET ###
@@ -47,8 +49,9 @@ def webhook():
 
 ########################################################################
 def test_connection(data):
+   current_time = datetime.datetime.now()
    response = {}
-   replytext = "Hi there. You have made a successful connection to the webhook. The webhook has received your utterance <" + data['queryResult']['queryText'] + ">"
+   replytext = "You have made a successful connection to the webhook on " + current_time
    response["fulfillmentText"] = replytext  
    return jsonify(response)  
 
