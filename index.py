@@ -1,21 +1,20 @@
     # /index.py
 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import os
-import requests
 import json
 import requests
 import pandas as pd
 import numpy as np
 from re import search
-
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 ### PLEASE MODIFY THE NEXT TWO LINES TO CUSTOMIZE TO YOUR OWN GOOGLESHEET ###
 
 KEY_FILE = "PythonToSheet-46f0bfa4bace.json"        
-GOOGLE_SHEET = "OneChatBotCourse"                   
+GOOGLE_SHEET_WRITE = "OneChatBotCourse"                   
+GOOGLE_SHEET_READ_URL  = "https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&gid=0&usp=sharing"                   
 
 ##
 
@@ -76,7 +75,7 @@ def register_participants(data):
    # Make sure you use the right name here.
    # Extract of the values
 
-   sheet = client.open(GOOGLE_SHEET).worksheet('registration')
+   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('registration')
    values = [name, department, shirtsize]
    sheet.append_row(values, value_input_option='RAW')
 
@@ -98,7 +97,7 @@ def request_callback(data):
    client = gspread.authorize(creds)
    # Find a workbook by name and open the first sheet
    # Make sure you use the right name here.
-   sheet = client.open(GOOGLE_SHEET).worksheet('callback')
+   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('callback')
    # Extract and print all of the values
    values = [name, phone, querytext]
    sheet.append_row(values, value_input_option='RAW')
@@ -111,21 +110,24 @@ def request_callback(data):
 ########################################################################
 
 def read_shuttlebustime(data):
-   shirtsize = data['queryResult']['parameters']['shirtsize']
-   name =  data['queryResult']['parameters']['person']['name']
-   department = data['queryResult']['parameters']['department']
-
+   pickup_pt = data['queryResult']['parameters']['pickup_pt']
    
    # download a file from Google as CSV
    # Upload into Pandas dataframe
-   # Do a dataframe search based on parameter value
+   # Do a dataframe search based on parameter value matching col value of the dataframe
    # Pick up the required value
 
+   df = pd.read_csv(GOOGLE_SHEET_READ_URL)
+   df_selected = df[ ( df['PickupPoint'] == pickup_pt    )]
+   result = df_selected[ [ 'Time'  ]].tostring(index = False)
 
+   if search("Empty", result) :
+       replytext = 'I am sorry. I am not able to find any related information'
+   else:
 
+       replytext = 'The pickup time is ' + str(result)
    # Prepare a response
    response = {}
-   replytext = "BUS"
    response["fulfillmentText"] = replytext
    return jsonify(response)  
 
