@@ -51,7 +51,7 @@ def webhook():
 def test_connection(data):
    current_time = datetime.datetime.now()
    response = {}
-   replytext = "You have made a successful connection to the webhook on " + current_time
+   replytext = "You have made a successful connection to the webhook on " + str(current_time)
    response["fulfillmentText"] = replytext  
    return jsonify(response)  
 
