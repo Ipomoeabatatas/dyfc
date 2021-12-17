@@ -17,7 +17,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 KEY_FILE = "PythonToSheet-46f0bfa4bace.json"        
 GOOGLE_SHEET_WRITE = "OneChatBotCourse"                   
-GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&gidusp=sharing'
+GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&usp=sharing'
 
 ##
 
