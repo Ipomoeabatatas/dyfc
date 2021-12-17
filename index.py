@@ -9,6 +9,7 @@ import numpy as np
 from re import search
 import gspread
 import datetime
+import pytz
 
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -49,7 +50,9 @@ def webhook():
 
 ########################################################################
 def test_connection(data):
-   current_time = datetime.datetime.now()
+   timeZ_Sg = pytz.timezone('Asia/Singapore')
+   current_time = datetime.datetime.now(timeZ_Sg)
+   
    response = {}
    replytext = "You have made a successful connection to the webhook on " + str(current_time)
    response["fulfillmentText"] = replytext  
