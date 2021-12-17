@@ -126,12 +126,11 @@ def read_shuttlebustime(data):
    df = pd.read_csv(GOOGLE_SHEET_READ_URL)
    df_selected = df[ ( df['PickupPoint'] == pickup_pt    )]
    #result = df_selected[ [ 'Time'  ]].to_string(index = False)
-   result = df_selected[ 'Time'].to_string(index = False)
+   result = df_selected['Time']
    
    if search("Empty", result) :
        replytext = 'I am sorry. I am not able to find any related information'
    else:
-
        replytext = 'The pickup time is ' + str(result)
    # Prepare a response
    response = {}
