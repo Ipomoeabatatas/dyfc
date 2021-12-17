@@ -41,7 +41,7 @@ def webhook():
         return register_participants(data)
     elif action == "request_callback" :
         return request_callback(data)
-    elif action == "check_time":
+    elif action == "read_sbtime":
        return read_shuttlebustime(data)
     elif action == "dummy_action" :
         return funct_dummy(data)
