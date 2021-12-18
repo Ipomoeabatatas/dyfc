@@ -71,7 +71,7 @@ def handle_unknown_action(data):
    
 ########################################################################
 def register_participants(data):
-   shirtsize = data['queryResult']['parameters']['shirtsize']
+   shirtsize = data['queryResult']['parameters']['size']
    name =  data['queryResult']['parameters']['person']['name']
    department = data['queryResult']['parameters']['department']
 
