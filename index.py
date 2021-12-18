@@ -16,8 +16,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 ### PLEASE MODIFY THE NEXT TWO LINES TO CUSTOMIZE TO YOUR OWN GOOGLESHEET ###
 
 KEY_FILE = "PythonToSheet-46f0bfa4bace.json"        
-GOOGLE_SHEET_WRITE = "OneChatBotCourse"                   
-#GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1z-RSuTmq8-jb7UmgFDx3JMJiLBkRSZy8wsqNb2GTfjA/export?format=csv&usp=sharing'
+GOOGLE_SHEET_WRITE = "DYFC-GSheet-Backend"                   
 GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1kz__C7eZg43ZAa228jsY6c91cM_eAXozVLZ3uL2wePQ/export?format=csv&usp=sharing&gid=2108358957'
 
 ##
@@ -82,13 +81,13 @@ def register_participants(data):
    # Make sure you use the right name here.
    # Extract of the values
 
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('registration')
+   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('PreRegister')
    values = [name, department, shirtsize]
    sheet.append_row(values, value_input_option='RAW')
 
    # Prepare a response
    response = {}
-   replytext = "Hi "  + name + ", Thanks for registrating for the event. We will reserve shirt size " + shirtsize + " for you. We've got your information in the spreadsheet. Please collect at HR Department. "
+   replytext = "Hi "  + name + ", Thanks for pre-registrating for the event. We will reserve shirt size " + shirtsize + " for you. We've got your information in the spreadsheet. Please collect at HR Department. "
    response["fulfillmentText"] = replytext
    return jsonify(response)  
 
@@ -104,7 +103,7 @@ def request_callback(data):
    client = gspread.authorize(creds)
    # Find a workbook by name and open the first sheet
    # Make sure you use the right name here.
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('callback')
+   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('CallbackRequest')
    # Extract and print all of the values
    values = [name, phone, querytext]
    sheet.append_row(values, value_input_option='RAW')
