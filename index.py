@@ -15,7 +15,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 ### PLEASE MODIFY THE NEXT TWO LINES TO CUSTOMIZE TO YOUR OWN GOOGLESHEET ###
 
-KEY_FILE = "PythonToSheet-46f0bfa4bace.json"        
+# KEY_FILE = "PythonToSheet-46f0bfa4bace.json"     # legacy key file   
+KEY_FILE = "eeee-qcgs-431f66d80f00.json"
 GOOGLE_SHEET_WRITE = "DYFC-GSheet-Backend"                   
 GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1kz__C7eZg43ZAa228jsY6c91cM_eAXozVLZ3uL2wePQ/export?format=csv&usp=sharing&gid=2108358957'
 
