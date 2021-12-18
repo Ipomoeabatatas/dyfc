@@ -38,7 +38,7 @@ def webhook():
     
     if action == "test_connection" :
         return test_connection(data)
-    elif action == "register_participants" :
+    elif action == "pre_register" :
         return register_participants(data)
     elif action == "request_callback" :
         return request_callback(data)
