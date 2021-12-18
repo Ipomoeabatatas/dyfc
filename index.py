@@ -68,12 +68,12 @@ def handle_unknown_action(data):
    return jsonify(response)            
    
 
-   
 ########################################################################
 def register_participants(data):
    shirtsize = data['queryResult']['parameters']['size']
    name =  data['queryResult']['parameters']['person']['name']
    department = data['queryResult']['parameters']['department']
+   entities = [name, department, shirtsize]
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
@@ -83,8 +83,8 @@ def register_participants(data):
    # Extract of the values
 
    sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('PreRegister')
-   values = [name, department, shirtsize]
-   sheet.append_row(values, value_input_option='RAW')
+   
+   sheet.append_row(entities, value_input_option='RAW')
 
    # Prepare a response
    response = {}
@@ -99,15 +99,13 @@ def request_callback(data):
    phone = data['queryResult']['parameters']['phone-number']
    name =  data['queryResult']['parameters']['person']['name']
    querytext = data['queryResult']['queryText']
+   entities = [name, phone, querytext]
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-   # Find a workbook by name and open the first sheet
-   # Make sure you use the right name here.
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('CallbackRequest')
-   # Extract and print all of the values
-   values = [name, phone, querytext]
-   sheet.append_row(values, value_input_option='RAW')
+   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('CallbackRequest')   
+   sheet.append_row(entities, value_input_option='RAW')
+
    # Prepare a response
    response = {}
    replytext = "Hi "  + name + ", sorry I can't help you now. But, someone will call you back at " + phone + ". Talk to you soon. We've got your information in the spreadsheet."
@@ -129,7 +127,7 @@ def read_shuttlebustime(data):
    result = df_selected[ [ 'Time'  ]].to_string(index = False)
    
    if search("Empty", result) :
-       replytext = 'I am sorry. I am not able to find any related information'
+       replytext = 'I am sorry. I am not able to find any related bus pickup information.'
    else:
        replytext = 'The pickup time is ' + str(result)
    # Prepare a response
@@ -138,7 +136,6 @@ def read_shuttlebustime(data):
    return jsonify(response)  
 
 
-#######################################################################
 
 ########################################################################
 
