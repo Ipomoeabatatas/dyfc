@@ -45,7 +45,8 @@ def webhook():
     elif action == "request_callback" :
         return request_callback(data)
     elif action == "read_sbtime":
-       return read_shuttlebustime(data)
+       # return read_shuttlebustime(data)
+       return read_gs_transport(data)
     elif action == "dummy_action" :
         return funct_dummy(data)
     else:
