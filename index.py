@@ -78,7 +78,7 @@ def register_participants(data):
    department = data['queryResult']['parameters']['department']
 
    timeZ_Sg = pytz.timezone('Asia/Singapore')
-   current_time = datetime.datetime.now(timeZ_Sg)
+   current_time = str(datetime.datetime.now(timeZ_Sg))
    
    row = [name, department, shirtsize, current_time]
 
