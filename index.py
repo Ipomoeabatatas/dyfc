@@ -76,18 +76,18 @@ def register_participants(data):
    shirtsize = data['queryResult']['parameters']['size']
    name =  data['queryResult']['parameters']['person']['name']
    department = data['queryResult']['parameters']['department']
-   entities = [name, department, shirtsize]
 
+   timeZ_Sg = pytz.timezone('Asia/Singapore')
+   current_time = datetime.datetime.now(timeZ_Sg)
+   
+   row = [name, department, shirtsize, current_time]
+
+   # Find a worksheet by name and open the first sheet
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-   
-   # Find a workbook by name and open the first sheet
-   # Make sure you use the right name here.
-   # Extract of the values
-
    sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('PreRegister')
    
-   sheet.append_row(entities, value_input_option='RAW')
+   sheet.append_row(row, value_input_option='RAW')
 
    # Prepare a response
    response = {}
@@ -102,12 +102,16 @@ def request_callback(data):
    phone = data['queryResult']['parameters']['phone-number']
    name =  data['queryResult']['parameters']['person']['name']
    querytext = data['queryResult']['queryText']
-   entities = [name, phone, querytext]
+
+   timeZ_Sg = pytz.timezone('Asia/Singapore')
+   current_time = datetime.datetime.now(timeZ_Sg)
+
+   row = [name, phone, querytext, current_time]
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
    sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('CallbackRequest')   
-   sheet.append_row(entities, value_input_option='RAW')
+   sheet.append_row(row, value_input_option='RAW')
 
    # Prepare a response
    response = {}
