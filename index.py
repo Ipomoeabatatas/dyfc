@@ -158,7 +158,7 @@ def read_gs_transport(data):
    result = df_selected[ [ 'Time'  ]].to_string(index = False)
 
    if search("Empty", result) :
-       replytext = 'I am sorry. I am not able to find any related bus pickup information.'
+       replytext = 'I am very sorry. I am not able to find any related bus pickup information.'
    else:
        replytext = 'The pickup time is ' + str(result)
    # Prepare a response
