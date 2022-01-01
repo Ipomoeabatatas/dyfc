@@ -160,7 +160,7 @@ def read_gs_transport(data):
    if search("Empty", result) :
        replytext = 'I am very sorry. I am not able to find any related bus pickup information.'
    else:
-       replytext = 'The pickup time is ' + str(result)
+       replytext = 'The bus will depart from ' + pickup_pt + ' at ' + str(result)
    # Prepare a response
    response = {}
    response["fulfillmentText"] = replytext
