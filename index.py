@@ -104,7 +104,7 @@ def request_callback(data):
    querytext = data['queryResult']['queryText']
 
    timeZ_Sg = pytz.timezone('Asia/Singapore')
-   current_time = datetime.datetime.now(timeZ_Sg)
+   current_time = str(datetime.datetime.now(timeZ_Sg))
 
    row = [name, phone, querytext, current_time]
 
