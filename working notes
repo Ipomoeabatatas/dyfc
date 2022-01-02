@@ -1,0 +1,14 @@
+
+
+https://rambutantree.pythonanywhere.com/webhook
+
+https://dyfc-webhook.herokuapp.com/webhook
+
+git push orign-github  main 
+
+git push orign-github  main -f (if all fails)
+
+it push heroku main
+
+git add .  
+ git commit -m 'with gitignore'
