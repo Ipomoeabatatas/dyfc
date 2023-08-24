@@ -17,8 +17,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
    
 KEY_FILE = "secret-key-file.json"
-GOOGLE_SHEET_WRITE = "DYFC-GSheet-Backend"                   
-GOOGLE_SHEET_READ_URL  = 'https://docs.google.com/spreadsheets/d/1kz__C7eZg43ZAa228jsY6c91cM_eAXozVLZ3uL2wePQ/export?format=csv&usp=sharing&gid=2108358957'
+GOOGLE_SHEET = "DYFC-GSheet-Backend"                   
 
 
 SCOPE = ['https://spreadsheets.google.com/feeds',  'https://www.googleapis.com/auth/drive']
@@ -84,7 +83,7 @@ def register_participants(data):
    # Find a worksheet by name and open the first sheet
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('PreRegister')
+   sheet = client.open(GOOGLE_SHEET).worksheet('PreRegister')
    
    sheet.append_row(row, value_input_option='RAW')
 
@@ -109,7 +108,7 @@ def request_callback(data):
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('CallbackRequest')   
+   sheet = client.open(GOOGLE_SHEET).worksheet('CallbackRequest')   
    sheet.append_row(row, value_input_option='RAW')
 
    # Prepare a response
@@ -120,29 +119,10 @@ def request_callback(data):
 
 ########################################################################
 
-def read_shuttlebustime(data):
-   pickup_pt = data['queryResult']['parameters']['dev_pickup']
-   
-   # download a file from Google as CSV
-   # Upload into Pandas dataframe
-   # Do a dataframe search based on parameter value matching col value of the dataframe
-   # Pick up the required value
-
-   df = pd.read_csv(GOOGLE_SHEET_READ_URL)
-   df_selected = df[ ( df['PickupPoint'] == pickup_pt    )]
-   result = df_selected[ [ 'Time'  ]].to_string(index = False)
-   
-   if search("Empty", result) :
-       replytext = 'I am sorry. I am not able to find any related bus pickup information.'
-   else:
-       replytext = 'The pickup time is ' + str(result)
-   # Prepare a response
-   response = {}
-   response["fulfillmentText"] = replytext
-   return jsonify(response)  
 
 ########################################################################
-#
+# modified 24 Aug 2023
+
 def read_gs_transport(data):
    pickup_pt = data['queryResult']['parameters']['dev_pickup']
    
@@ -153,12 +133,16 @@ def read_gs_transport(data):
 
    creds = ServiceAccountCredentials.from_json_keyfile_name(KEY_FILE, SCOPE)
    client = gspread.authorize(creds)
-   sheet = client.open(GOOGLE_SHEET_WRITE).worksheet('Transport')   
+   sheet = client.open(GOOGLE_SHEET).worksheet('Transport')   
    
-   df = pd.DataFrame(sheet.get_all_records())
-   
+   data = sheet.get_all_values()
+   # Extract column names from the first row
+   column_names = data[0]
+   # Convert data to a Pandas DataFrame, excluding the first row (column names)
+   df = pd.DataFrame(data[1:], columns=column_names)
+    
    df_selected = df[ ( df['PickupPoint'] == pickup_pt    )]
-   result = df_selected[ [ 'Time'  ]].to_string(index = False)
+   result = df_selected[ [ 'Time'  ]].to_string(index = False, header=False)
 
    if search("Empty", result) :
        replytext = 'I am very sorry. I am not able to find any related bus pickup information.'
